@@ -1,69 +1,32 @@
-const mongoose = require('mongoose');
-const validator = require('validator');
-mongoose.connect('mongodb://127.0.0.1:27017/task-manager-api',{
+const mongoose = require('mongoose')
 
-    useNewUrlParser:true,
-    useCreateIndex:true    
+mongoose.connect('mongodb://127.0.0.1:27017/task-manager-api', {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify:false,
+    useUnifiedTopology: true
+})
 
-});
+ 
 
-
-// const Tasks = mongoose.model('Tasks',{
-//     description:{
-//         type:String
+// const Task = mongoose.model('Task', {
+//     description: {
+//         type: String,
+//         required: true,
+//         trim: true
 //     },
-//     completed:{
-//         type:Boolean
+//     completed: {
+//         type: Boolean,
+//         default: false
 //     }
-// });
-
-// const task = new Tasks({
-//     description:'Test',
-//     completed:true
-// });
-
-// task.save().then(()=>{
-//     console.log(task);
-
-// }).catch((error)=>{
-//     console.log(error);
-
 // })
 
+// const task = new Task({
+//     description: '  Eat lunch'
+// })
 
-const User = mongoose.model('User',{
-    name:{
-        type: String,
-        required:true
-    },
-    email:{
-        type:String,
-        required:true,
-        validate(value){
-            if(!validator.isEmail(value)){
-                throw new Error('Email is invalid');
-            }
-        }
-    },  
-    age:{
-        type: Number,
-        default:2
-    }
-});
-
-const me = new User({
-
-    name:'Ali',
-    email:'www@ccc.com'
-
-});
-
-me.save().then((me)=>{
-    
-    console.log(me);
-
-
-}).catch((error)=>{
-    console.log(error);
-
-});
+// task.save().then(() => {
+//     console.log(task)
+// }).catch((error) => {
+//     console.log(error)
+// })
